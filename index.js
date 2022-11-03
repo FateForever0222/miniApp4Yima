@@ -14,10 +14,23 @@ app.all('/', (req, res) => {
 })
 
 app.all('/phone',(req,res)=>{
-  // let url=`https://api.weixin.qq.com/wxa/business/getuserphonenumber?code=${code}`
-  // let req_wx=http.request(url,function(res))
+  var code=req.headers.code
+  let url=`https://api.weixin.qq.com/wxa/business/getuserphonenumber?code=${code}`
+  var body
+  let req_wx=new Promise((resolve, reject) => {
+    request({
+      method: 'POST',
+      // url: 'http://api.weixin.qq.com/wxa/msg_sec_check?access_token=TOKEN',
+      url: url, // 这里就是少了一个token
+    },function (error, response) {
+      console.log('接口返回内容', response.body)
+      body=resolve(JSON.parse(response.body))
+    })
+  })
   res.send({
-    headers: req.headers
+    ip: ip.address(),
+    headers: req.headers,
+    body:body
   })
 })
 

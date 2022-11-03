@@ -9,8 +9,9 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
+    "app": "^0.1.0",
     "express": "^4.16.4",
-    "ip": "latest",
+    "ip": "^1.1.8",
     "request": "^2.88.2"
   }
 }

@@ -1,0 +1,25 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '27081:80'
+    container_name: wxcloud_miniapp4yima
+    labels:
+      - wxPort=27082
+      - hostPort=27081
+      - wxcloud=miniapp4yima
+      - role=container
+    environment:
+      - MYSQL_USERNAME=
+      - MYSQL_PASSWORD=
+      - MYSQL_ADDRESS=
+networks:
+  default:
+    external:
+      name: wxcb0
